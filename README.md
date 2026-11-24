@@ -15,6 +15,7 @@ directly over SPI, which turns a disposable shelf label into a reusable,
 battery-friendly e-paper module that costs almost nothing.
 
 <!-- Hero image: docs/images/hero.jpg -->
+
 <!-- ![Finished build](docs/images/hero.jpg) -->
 
 ## Project overview
@@ -45,18 +46,18 @@ transport layer, a panel driver and a drawing layer.
 
 ## Hardware
 
-| Item | Detail |
-| --- | --- |
+| Item         | Detail                                               |
+| ------------ | ---------------------------------------------------- |
 | Target label | SES-imagotag VUSION 2.6" (2.66" class, UU340 family) |
-| Label MCU | EFR32FG22 Wireless Gecko (not used) |
-| Panel | Pervasive Displays SE2266JS0C1 / E2266JS0C1 |
-| Resolution | 296 × 152, 125 dpi |
-| Colours | Black / white / red (Spectra film J) |
-| Active area | 60.09 × 30.70 mm |
-| Controller | Pervasive iTC, 4-wire SPI |
-| Driving MCU | ESP32-C3 Super Mini (RISC-V, 4 MB flash) |
-| Framework | Arduino / PlatformIO |
-| Logic level | 3.3 V |
+| Label MCU    | EFR32FG22 Wireless Gecko (not used)                  |
+| Panel        | Pervasive Displays SE2266JS0C1 / E2266JS0C1          |
+| Resolution   | 296 × 152, 125 dpi                                   |
+| Colours      | Black / white / red (Spectra film J)                 |
+| Active area  | 60.09 × 30.70 mm                                     |
+| Controller   | Pervasive iTC, 4-wire SPI                            |
+| Driving MCU  | ESP32-C3 Super Mini (RISC-V, 4 MB flash)             |
+| Framework    | Arduino / PlatformIO                                 |
+| Logic level  | 3.3 V                                                |
 
 Silkscreen markings and test-point names vary between label revisions. Verify
 the flex pinout on your own board before applying power.
@@ -66,17 +67,17 @@ the flex pinout on your own board before applying power.
 The ESP32-C3 pins below avoid the strapping pins (GPIO 2/8/9), the USB pins
 (GPIO 18/19) and UART0 (GPIO 20/21).
 
-| ESP32-C3 | Panel signal | Direction | Notes |
-| --- | --- | --- | --- |
-| GPIO 4 | SCL / SCK | Out | SPI clock |
-| GPIO 6 | SDA / MOSI | Out | Data to panel (bidirectional only for the OTP read) |
-| GPIO 7 | CS | Out | Chip select, active low |
-| GPIO 5 | D/C | Out | Low = command, high = data |
-| GPIO 1 | RES | Out | Reset, active low |
-| GPIO 0 | BUSY | In | Open-drain, **low = busy**; internal pull-up enabled |
-| GPIO 3 | Panel VDD gate | Out | High-side P-MOSFET gate, low = panel on |
-| 3V3 | VDD / VDDIO | Power | 100 nF + 10 µF at the connector |
-| GND | GND | Power | Common ground |
+| ESP32-C3 | Panel signal   | Direction | Notes                                                |
+| -------- | -------------- | --------- | ---------------------------------------------------- |
+| GPIO 4   | SCL / SCK      | Out       | SPI clock                                            |
+| GPIO 6   | SDA / MOSI     | Out       | Data to panel (bidirectional only for the OTP read)  |
+| GPIO 7   | CS             | Out       | Chip select, active low                              |
+| GPIO 5   | D/C            | Out       | Low = command, high = data                           |
+| GPIO 1   | RES            | Out       | Reset, active low                                    |
+| GPIO 0   | BUSY           | In        | Open-drain, **low = busy**; internal pull-up enabled |
+| GPIO 3   | Panel VDD gate | Out       | High-side P-MOSFET gate, low = panel on              |
+| 3V3      | VDD / VDDIO    | Power     | 100 nF + 10 µF at the connector                      |
+| GND      | GND            | Power     | Common ground                                        |
 
 Solder 30 AWG wire to the panel flex pads or to the vias on the corresponding
 nets. Exact test-point labels and a per-board trace map are in
@@ -85,8 +86,7 @@ nets. Exact test-point labels and a per-board trace map are in
 
 ![Panel-side wiring on the label PCB](docs/images/label-wiring.jpg)
 
-*Panel-side wiring on the label PCB. The display flex connector is at the upper
-left; the SPI and power wires are soldered to the corresponding vias.*
+*Panel-side wiring on the label PCB. The display flex connector is at the right; the SPI and power wires are soldered to the corresponding exposed pins on the PCB.*
 
 ## Power and safety
 
@@ -137,26 +137,26 @@ is already set in `platformio.ini`.
 
 ### Serial console
 
-| Key | Action |
-| --- | --- |
-| `w` | Fill white |
-| `k` | Fill black |
-| `r` | Fill red |
-| `p` | Geometry / colour test pattern |
-| `e` | Identification card |
-| `i` | Re-initialise the panel |
-| `s` | DC/DC off (image retained) |
+| Key | Action                                      |
+| --- | ------------------------------------------- |
+| `w` | Fill white                                  |
+| `k` | Fill black                                  |
+| `r` | Fill red                                    |
+| `p` | Geometry / colour test pattern              |
+| `e` | Identification card                         |
+| `i` | Re-initialise the panel                     |
+| `s` | DC/DC off (image retained)                  |
 | `t` | Trace BUSY for 15 s during booster start-up |
-| `h` | Print help |
+| `h` | Print help                                  |
 
 ### Build variants
 
-| Environment | Purpose |
-| --- | --- |
-| `release` | Identification card at boot (default) |
-| `pattern` | Test pattern at boot |
-| `slow` | 500 kHz bus, 30 µs CS setup time, for long or noisy wiring |
-| `direct` | Panel VDD driven directly from GPIO 3, no MOSFET (bench prototype) |
+| Environment | Purpose                                                            |
+| ----------- | ------------------------------------------------------------------ |
+| `release`   | Identification card at boot (default)                              |
+| `pattern`   | Test pattern at boot                                               |
+| `slow`      | 500 kHz bus, 30 µs CS setup time, for long or noisy wiring         |
+| `direct`    | Panel VDD driven directly from GPIO 3, no MOSFET (bench prototype) |
 
 ```bash
 pio run -e pattern -t upload
@@ -209,14 +209,14 @@ naive implementations are documented in [docs/protocol.md](docs/protocol.md).
 
 ## Troubleshooting
 
-| Symptom | Likely cause |
-| --- | --- |
-| BUSY never releases | Booster capacitors missing, weak supply, or RES not connected |
-| Init reports OK, nothing appears | Command and data split across two CS frames |
-| Image rotated 90° or split into vertical bands | Row-major buffer sent to an iTC panel |
-| Colours swapped | Black/red plane polarity (`EPD_INVERT`) |
-| Faint or partial image | Temperature register, or a single refresh is not enough |
-| Garbled glyphs | SPI clock too high for the wiring, or the wrong bit order |
+| Symptom                                        | Likely cause                                                  |
+| ---------------------------------------------- | ------------------------------------------------------------- |
+| BUSY never releases                            | Booster capacitors missing, weak supply, or RES not connected |
+| Init reports OK, nothing appears               | Command and data split across two CS frames                   |
+| Image rotated 90° or split into vertical bands | Row-major buffer sent to an iTC panel                         |
+| Colours swapped                                | Black/red plane polarity (`EPD_INVERT`)                       |
+| Faint or partial image                         | Temperature register, or a single refresh is not enough       |
+| Garbled glyphs                                 | SPI clock too high for the wiring, or the wrong bit order     |
 
 ## Credits
 
