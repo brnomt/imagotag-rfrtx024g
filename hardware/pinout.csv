@@ -1,0 +1,9 @@
+signal,direction,esp32c3_gpio,panel_pad,label_board_point,notes
+SCL,panel_input,4,TBC,TBC,SPI clock
+SDA,panel_input,6,TBC,TBC,Data; bidirectional only for OTP read
+CS,panel_input,7,TBC,TBC,Active low; idle high
+DC,panel_input,5,TBC,TBC,Low = command; high = data
+RES,panel_input,1,TBC,TBC,Active low; 10 ms reset pulse
+BUSY,panel_output,0,TBC,TBC,Open-drain; low = busy
+VDD,power,3V3,TBC,TBC,Switched by P-MOSFET; 100 nF + 10 uF at connector
+GND,power,GND,TBC,TBC,Short return path

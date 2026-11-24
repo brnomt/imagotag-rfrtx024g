@@ -1,2 +1,23 @@
+# PlatformIO
 .pio/
+.pioenvs/
+.piolibdeps/
+
+# Editors
 .vscode/
+.idea/
+
+# Local vendor material, not redistributable
+efr32fg22e-datasheet.pdf
+
+# Session tooling
+.commandcode/
+
+# Build artefacts
+*.bin
+*.elf
+*.map
+
+# OS
+.DS_Store
+Thumbs.db

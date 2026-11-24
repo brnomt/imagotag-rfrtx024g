@@ -1,0 +1,22 @@
+Third-party notices
+===================
+
+Adafruit GFX Library
+--------------------
+firmware/include/font5x7.h contains the 5x7 bitmap glyph table derived from
+glcdfont.c in the Adafruit GFX Library.
+
+  Copyright (c) 2012 Adafruit Industries
+  https://github.com/adafruit/Adafruit-GFX-Library
+
+  Released under the BSD license. The glyph data is used here as a font
+  resource; no Adafruit driver code is included.
+
+Protocol reference
+------------------
+The iTC command sequences and framebuffer format were implemented from the
+public Pervasive Displays PDLS_Basic and PDLS_EXT3_Basic_Global sources and
+application notes. No vendor source code is copied into this repository.
+
+  https://github.com/PervasiveDisplays/PDLS_Basic
+  https://github.com/PervasiveDisplays/PDLS_EXT3_Basic_Global
